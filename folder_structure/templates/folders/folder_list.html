@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+<body>
+<h2>Your Folders</h2>
+<ul>
+    {% for folder in user_folders %}
+        <li>
+            <a href="{% url 'folder_create' folder.id %}">{{ folder.name }}</a>
+            <ul>
+                {% for subfolder in folder.folder_set.all %}
+                    <li><a href="{% url 'folder_create' subfolder.id %}">{{ subfolder.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'folder_create' %}">Create New Folder</a>
+
+</body> 
+
+</html>
